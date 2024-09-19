@@ -1,0 +1,7 @@
+# stuff that starts with "events" (pytorch profiler files)
+events*
+
+# general python compiled files
+*.pyc
+*.pyo
+

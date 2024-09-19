@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 
 
 def generate_structured_cg_inputs(n=100, problem_type="poisson"):
@@ -103,3 +104,22 @@ def generate_well_conditioned_spd(n, condition_number=10, random_state=None):
 # print(f"Is symmetric: {np.allclose(A, A.T)}")
 # print(f"Is positive definite: {np.all(np.linalg.eigvals(A) > 0)}")
 # plt.imshow(A)
+import torch
+
+
+def generate_simple_random_psd_matrix(
+    n: int, diag_noise_factor: float = 1.0
+) -> torch.Tensor:
+    """
+    Generate a symmetric positive semi-definite matrix.
+
+    Args:
+    n (int): The size of the square matrix (n x n).
+    diag_noise_factor (float): Factor to control the amount of noise added to the diagonal. Default is 1.0.
+
+    Returns:
+    torch.Tensor: A symmetric positive semi-definite matrix of size (n x n).
+    """
+    A = torch.randn(n, n)
+    A = A @ A.t() + n * torch.eye(n) * diag_noise_factor
+    return A
