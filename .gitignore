@@ -5,3 +5,8 @@ events*
 *.pyc
 *.pyo
 
+# ignore files ending with .so
+*.so
+
+# ignore subfolders called build 
+build/
